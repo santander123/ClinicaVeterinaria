@@ -15,13 +15,13 @@ public class Animal {
     private String animal;
     private String nombre;
     private String peso;
-    private char sexo;
+    private String sexo;
     private String estadoDeSalud;
     private String sintomas;
     
     //Contructor
 
-    public Animal(String animal, String nombre, String peso, char sexo, String estadoDeSalud, String sintomas) {
+    public Animal(String animal, String nombre, String peso, String sexo, String estadoDeSalud, String sintomas) {
         this.animal = animal;
         this.nombre = nombre;
         this.peso = peso;
@@ -44,7 +44,7 @@ public class Animal {
         return peso;
     }
 
-    public char getSexo() {
+    public String getSexo() {
         return sexo;
     }
 

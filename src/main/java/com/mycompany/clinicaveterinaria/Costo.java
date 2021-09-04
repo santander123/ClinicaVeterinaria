@@ -15,6 +15,7 @@ public class Costo {
     private double valorProcedimiento;
     private int tiempoClinica;
 
+        
     public Costo(double valorMedicamento, int cantidadMedicamento, double valorProcedimiento, int tiempoClinica) {
         this.valorMedicamento = valorMedicamento;
         this.cantidadMedicamento = cantidadMedicamento;

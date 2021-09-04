@@ -15,6 +15,9 @@ public class Propietario {
     private String telefono;
     private String direccion;
 
+   
+
+    
     public Propietario(String nombre, String identificacion, String telefono, String direccion) {
         this.nombre = nombre;
         this.identificacion = identificacion;

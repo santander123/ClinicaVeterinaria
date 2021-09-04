@@ -20,7 +20,7 @@ public class Animal {
     private String sintomas;
     
     //Contructor
-
+ 
     public Animal(String animal, String nombre, String peso, String sexo, String estadoDeSalud, String sintomas) {
         this.animal = animal;
         this.nombre = nombre;

@@ -12,6 +12,9 @@ package com.mycompany.clinicaveterinaria;
 public class Procedimiento {
     private String procedimiento;
 
+    
+
+    
     public Procedimiento(String procedimiento) {
         this.procedimiento = procedimiento;
     }

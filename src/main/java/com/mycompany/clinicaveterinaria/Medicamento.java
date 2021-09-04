@@ -15,6 +15,9 @@ public class Medicamento {
     private String viaDeAdministracion;
     private String naturaleza;
 
+   
+
+    
     public Medicamento(String medicamento, String propiedad, String viaDeAdministracion, String naturaleza) {
         this.medicamento = medicamento;
         this.propiedad = propiedad;

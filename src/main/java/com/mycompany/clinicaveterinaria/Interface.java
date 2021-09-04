@@ -5,6 +5,8 @@
  */
 package com.mycompany.clinicaveterinaria;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,6 +22,19 @@ public class Interface extends javax.swing.JFrame {
     public Interface() {
         initComponents();
     }
+    
+    private String fechaActual(){
+        Date fecha = new Date();
+        SimpleDateFormat formatoFecha= new SimpleDateFormat("dd/MM/YYYY");
+        
+        return formatoFecha.format(fecha);
+    }
+    
+    private void imprimirTablaFactura(Procedimiento p, Medicamento m){
+        DefaultTableModel tblModel = (DefaultTableModel) jTable4.getModel();
+        String datosPersona[] = {p.getProcedimiento(),m.getMedicamento(),m.getNaturaleza(),m.getPropiedad(),m.getViaDeAdministracion()};
+        tblModel.addRow(datosPersona);
+    }
 
     private void imprimirInformacion(Animal a,Propietario p){
         DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
@@ -27,6 +42,12 @@ public class Interface extends javax.swing.JFrame {
         String datosPersona[] = {a.getAnimal(),a.getNombre(),a.getPeso(),a.getSexo(),a.getEstadoDeSalud(),a.getSintomas()};
         tblModel.addRow(datosPersona);
         tblModel2.addRow(datosPersona);
+    }
+    
+    private void imprimirMedicamento(Medicamento m){
+        DefaultTableModel tblModel3 = (DefaultTableModel) jTable3.getModel();
+        String datosPersona[] = {m.getMedicamento(),m.getPropiedad(),m.getViaDeAdministracion(),m.getNaturaleza()};
+        tblModel3.addRow(datosPersona);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -69,9 +90,8 @@ public class Interface extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        areProcedimiento = new javax.swing.JTextArea();
         btnRegistrarProcedimiento = new javax.swing.JButton();
+        txtProcedimiento = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
@@ -85,7 +105,7 @@ public class Interface extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jComboPropiedad = new javax.swing.JComboBox<>();
-        jComboNaturalez = new javax.swing.JComboBox<>();
+        jComboNaturaleza = new javax.swing.JComboBox<>();
         jComboViaAdministracion = new javax.swing.JComboBox<>();
         jLabel24 = new javax.swing.JLabel();
         txtMedicamento = new javax.swing.JTextField();
@@ -107,6 +127,48 @@ public class Interface extends javax.swing.JFrame {
         txtValorProcedimiento = new javax.swing.JTextField();
         txtTiempoClinica = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel32 = new javax.swing.JLabel();
+        txtNumeroFactura = new javax.swing.JTextField();
+        jLabel33 = new javax.swing.JLabel();
+        txtFecha = new javax.swing.JTextField();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        fNombrePropietario = new javax.swing.JTextField();
+        fNumeroIdentificacion = new javax.swing.JTextField();
+        fTelefono = new javax.swing.JTextField();
+        fDireccion = new javax.swing.JTextField();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel79 = new javax.swing.JLabel();
+        jLabel80 = new javax.swing.JLabel();
+        jLabel81 = new javax.swing.JLabel();
+        jLabel82 = new javax.swing.JLabel();
+        jLabel83 = new javax.swing.JLabel();
+        jLabel84 = new javax.swing.JLabel();
+        fAnimal = new javax.swing.JTextField();
+        fNombrePaciente = new javax.swing.JTextField();
+        fPeso = new javax.swing.JTextField();
+        fEstadoSalud = new javax.swing.JTextField();
+        fSexo = new javax.swing.JTextField();
+        fSintoma = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        fValorMedicamento = new javax.swing.JTextField();
+        fCantidadMedicamento = new javax.swing.JTextField();
+        fValorProcedimiento = new javax.swing.JTextField();
+        fTiempoClinica = new javax.swing.JTextField();
+        jLabel44 = new javax.swing.JLabel();
+        fTotal = new javax.swing.JTextField();
+        btnInicio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -357,10 +419,6 @@ public class Interface extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel17.setText("Descripción del procedimiento");
 
-        areProcedimiento.setColumns(20);
-        areProcedimiento.setRows(5);
-        jScrollPane2.setViewportView(areProcedimiento);
-
         btnRegistrarProcedimiento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnRegistrarProcedimiento.setText("Registrar Procedimiento");
         btnRegistrarProcedimiento.addActionListener(new java.awt.event.ActionListener() {
@@ -373,22 +431,20 @@ public class Interface extends javax.swing.JFrame {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 884, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
-                        .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 876, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(78, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(385, Short.MAX_VALUE)
                 .addComponent(btnRegistrarProcedimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(376, 376, 376))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(78, 78, 78)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 884, Short.MAX_VALUE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtProcedimiento))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel8Layout.createSequentialGroup()
                     .addGap(76, 76, 76)
@@ -409,7 +465,7 @@ public class Interface extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtProcedimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnRegistrarProcedimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(51, Short.MAX_VALUE))
@@ -456,13 +512,10 @@ public class Interface extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Animal", "Nombre", "Peso", "Sexo", "Estado de salud", "Sintoma"
+                "Animal", "Nombre", "Peso", "Sexo", "Estado de salud", "Sintoma"
             }
         ));
         jScrollPane3.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(0).setHeaderValue("Código");
-        }
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -471,6 +524,11 @@ public class Interface extends javax.swing.JFrame {
 
         btnRegistrarMedicamentos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnRegistrarMedicamentos.setText("Registrar Procedimiento");
+        btnRegistrarMedicamentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarMedicamentosActionPerformed(evt);
+            }
+        });
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel21.setText("Naturaleza");
@@ -484,8 +542,8 @@ public class Interface extends javax.swing.JFrame {
         jComboPropiedad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jComboPropiedad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Antiparasitario", "Analgésico", "Anestésico", "Otro" }));
 
-        jComboNaturalez.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jComboNaturalez.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inmunológicos", "Farmacológicos" }));
+        jComboNaturaleza.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jComboNaturaleza.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inmunológicos", "Farmacológicos" }));
 
         jComboViaAdministracion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jComboViaAdministracion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inyectable", "Oral", "Intrauterino", "Cutáneo", "Intramamarios", "Otro" }));
@@ -530,7 +588,7 @@ public class Interface extends javax.swing.JFrame {
                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboNaturalez, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboNaturaleza, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboViaAdministracion, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(113, 113, 113))
             .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -566,7 +624,7 @@ public class Interface extends javax.swing.JFrame {
                         .addComponent(btnRegistrarMedicamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel21)
-                        .addComponent(jComboNaturalez, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jComboNaturaleza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(48, Short.MAX_VALUE))
             .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel9Layout.createSequentialGroup()
@@ -615,9 +673,6 @@ public class Interface extends javax.swing.JFrame {
             }
         ));
         jScrollPane4.setViewportView(jTable3);
-        if (jTable3.getColumnModel().getColumnCount() > 0) {
-            jTable3.getColumnModel().getColumn(1).setHeaderValue("Código");
-        }
 
         jLabel27.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -626,6 +681,11 @@ public class Interface extends javax.swing.JFrame {
 
         btnRegistrarCostos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnRegistrarCostos.setText("Registrar Costos");
+        btnRegistrarCostos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarCostosActionPerformed(evt);
+            }
+        });
 
         jLabel28.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel28.setText("Valor del medicamento");
@@ -734,17 +794,289 @@ public class Interface extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Costo", jPanel4);
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBackground(new java.awt.Color(0, 133, 215));
+
+        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel32.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel32.setText("Numero de Factura");
+
+        txtNumeroFactura.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        jLabel33.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel33.setText("Fecha de emision");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(230, 230, 230)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNumeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(195, 195, 195)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel33)
+                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtFecha)
+                    .addComponent(txtNumeroFactura, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        jLabel34.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel34.setText("Información del propietario");
+        jLabel34.setToolTipText("");
+
+        jLabel35.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel35.setText("Nombre");
+
+        jLabel36.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel36.setText("N_Identificacion");
+
+        jLabel37.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel37.setText("Telefono");
+
+        jLabel38.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel38.setText("Dirección");
+
+        jLabel39.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel39.setText("Información del paciente");
+        jLabel39.setToolTipText("");
+
+        jLabel79.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel79.setText("Animal");
+
+        jLabel80.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel80.setText("Nombre");
+
+        jLabel81.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel81.setText("Peso");
+
+        jLabel82.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel82.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel82.setText("Sintoma");
+
+        jLabel83.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel83.setText("Estado de salud");
+
+        jLabel84.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel84.setText("Sexo");
+
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Procedimiento", "Medicamento", "Naturaleza", "Propiedad", "Via de administracion"
+            }
+        ));
+        jScrollPane5.setViewportView(jTable4);
+
+        jLabel40.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel40.setText("Valor del medicamento");
+
+        jLabel41.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel41.setText("Cantidad de medicamento ");
+
+        jLabel42.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel42.setText("Valor del procedimiento");
+
+        jLabel43.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel43.setText("Tiempo en la clínica");
+
+        jLabel44.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel44.setText("Total a pagar:");
+
+        btnInicio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnInicio.setText("Volver al inicio");
+        btnInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInicioActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jSeparator2)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel34)
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel35)
+                                    .addComponent(jLabel36)
+                                    .addComponent(jLabel37)
+                                    .addComponent(jLabel38))
+                                .addGap(40, 40, 40)
+                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(fNombrePropietario)
+                                    .addComponent(fNumeroIdentificacion)
+                                    .addComponent(fTelefono)
+                                    .addComponent(fDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(128, 128, 128)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel39)
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addComponent(jLabel83, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fEstadoSalud))
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel79, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel80, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel81, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(33, 33, 33)
+                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(fAnimal)
+                                    .addComponent(fNombrePaciente)
+                                    .addComponent(fPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addComponent(jLabel84, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(fSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addComponent(jLabel82)
+                                .addGap(18, 18, 18)
+                                .addComponent(fSintoma, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jScrollPane5)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
+                                .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(fTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
+                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                                        .addComponent(jLabel41)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                    .addGroup(jPanel11Layout.createSequentialGroup()
+                                        .addComponent(jLabel40)
+                                        .addGap(40, 40, 40)))
+                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(fValorMedicamento)
+                                    .addComponent(fCantidadMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel42)
+                                    .addComponent(jLabel43))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(fValorProcedimiento)
+                                    .addComponent(fTiempoClinica, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)))
+                            .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(59, Short.MAX_VALUE))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(jLabel39)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel79)
+                            .addComponent(fAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel84)
+                            .addComponent(fSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel80)
+                            .addComponent(fNombrePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel82)
+                            .addComponent(fSintoma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel81)
+                            .addComponent(fPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel83)
+                            .addComponent(fEstadoSalud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(jLabel34)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel35)
+                            .addComponent(fNombrePropietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel36)
+                            .addComponent(fNumeroIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel37)
+                            .addComponent(fTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel38)
+                            .addComponent(fDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel40)
+                    .addComponent(jLabel42)
+                    .addComponent(fValorMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fValorProcedimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel41)
+                    .addComponent(jLabel43)
+                    .addComponent(fCantidadMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fTiempoClinica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel44)
+                        .addComponent(fTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(80, Short.MAX_VALUE)
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 712, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(52, Short.MAX_VALUE)
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61))
         );
 
         jTabbedPane1.addTab("Factura", jPanel5);
@@ -770,16 +1102,232 @@ public class Interface extends javax.swing.JFrame {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         Animal animal = new Animal(txtAnimal.getText(),txtNombrePaciente.getText(),txtPeso.getText(),(String)jComboSexo.getSelectedItem(),(String)jComboEstado.getSelectedItem(),txtSintoma.getText());
         Propietario persona = new Propietario(txtNombrePropietario.getText(),txtIdentificacion.getText(),txtTelefono.getText(),txtDireccion.getText());
+        
         imprimirInformacion(animal,persona);
-        JOptionPane.showMessageDialog(this,"Los datos se registraron de forma correcta");
+        
         jTabbedPane1.setSelectedIndex(1);
+        
+        //Bloqueo
+        txtAnimal.setEditable(false);
+        txtNombrePaciente.setEditable(false);
+        txtPeso.setEditable(false);
+        jComboSexo.setEnabled(false);
+        jComboEstado.setEnabled(false);
+        txtSintoma.setEditable(false);
+        
+        txtNombrePropietario.setEditable(false);
+        txtIdentificacion.setEditable(false);
+        txtTelefono.setEditable(false);
+        txtDireccion.setEditable(false);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnRegistrarProcedimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarProcedimientoActionPerformed
-        areProcedimiento.setLineWrap(true);
-        areProcedimiento.setWrapStyleWord(true);
+        Procedimiento procedimiento = new Procedimiento(txtProcedimiento.getText());
         jTabbedPane1.setSelectedIndex(2);
+        //Bloqueo
+        txtProcedimiento.setEditable(false);
     }//GEN-LAST:event_btnRegistrarProcedimientoActionPerformed
+
+    private void btnRegistrarMedicamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarMedicamentosActionPerformed
+        Medicamento medicamento = new Medicamento(txtMedicamento.getText(),(String)jComboPropiedad.getSelectedItem(),(String)jComboViaAdministracion.getSelectedItem(),(String)jComboNaturaleza.getSelectedItem());
+        imprimirMedicamento(medicamento);
+        jTabbedPane1.setSelectedIndex(3);
+        //Bloqueo
+        txtMedicamento.setEditable(false);
+        jComboPropiedad.setEnabled(false);
+        jComboViaAdministracion.setEnabled(false);
+        jComboNaturaleza.setEnabled(false);
+    }//GEN-LAST:event_btnRegistrarMedicamentosActionPerformed
+
+    private void btnRegistrarCostosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCostosActionPerformed
+        Costo costo=new Costo(Double.parseDouble(txtValorMedicamento.getText()),Integer.parseInt(txtCantidadMedicamento.getText()),Double.parseDouble(txtValorProcedimiento.getText()), Integer.parseInt(txtTiempoClinica.getText()));
+        int a=0;
+        a=(int)(Math.random()*100);
+        //Instacia de objetos
+        Animal animal = new Animal(txtAnimal.getText(),txtNombrePaciente.getText(),txtPeso.getText(),(String)jComboSexo.getSelectedItem(),(String)jComboEstado.getSelectedItem(),txtSintoma.getText());
+        Propietario propietario = new Propietario(txtNombrePropietario.getText(),txtIdentificacion.getText(),txtTelefono.getText(),txtDireccion.getText());
+        Medicamento medicamento = new Medicamento(txtMedicamento.getText(),(String)jComboPropiedad.getSelectedItem(),(String)jComboViaAdministracion.getSelectedItem(),(String)jComboNaturaleza.getSelectedItem());
+        Procedimiento proceso = new Procedimiento(txtProcedimiento.getText());
+        
+        txtNumeroFactura.setText(Integer.toString(a));
+        txtFecha.setText(fechaActual());
+        
+        //Propietario
+        fNombrePropietario.setText(propietario.getNombre());
+        fNumeroIdentificacion.setText(propietario.getIdentificacion());
+        fTelefono.setText(propietario.getTelefono());
+        fDireccion.setText(propietario.getDireccion());
+        
+        //Paciente
+        fAnimal.setText(animal.getAnimal());
+        fNombrePaciente.setText(animal.getNombre());
+        fPeso.setText(animal.getPeso());
+        fEstadoSalud.setText(animal.getEstadoDeSalud());
+        fSexo.setText(animal.getSexo());
+        fSintoma.setText(animal.getSintomas());
+        
+        //Tabla
+        imprimirTablaFactura(proceso,medicamento);
+        
+        //Valores
+        double valorTotal=((costo.getTiempoClinica()*5000)+(costo.getValorMedicamento()*costo.getCantidadMedicamento())+costo.getValorProcedimiento());
+        System.out.println("Total:"+valorTotal);
+        fValorMedicamento.setText(String.valueOf(costo.getValorMedicamento()));
+        fCantidadMedicamento.setText(Integer.toString(costo.getCantidadMedicamento()));
+        fTotal.setText(String.valueOf(valorTotal));
+        fValorProcedimiento.setText(String.valueOf(costo.getValorProcedimiento()));
+        fTiempoClinica.setText(Integer.toString(costo.getTiempoClinica()));
+                
+        //Bloquear 
+        txtNumeroFactura.setEditable(false);
+        txtFecha.setEditable(false);
+        
+        txtValorMedicamento.setEditable(false);
+        txtCantidadMedicamento.setEditable(false);
+        txtValorProcedimiento.setEditable(false);
+        txtTiempoClinica.setEditable(false);
+        
+        //Bloqueo Propietario
+        fNombrePropietario.setEditable(false);
+        fNumeroIdentificacion.setEditable(false);
+        fTelefono.setEditable(false);
+        fDireccion.setEditable(false);
+        
+        //Bloque paciente
+        fAnimal.setEditable(false);
+        fNombrePaciente.setEditable(false);
+        fPeso.setEditable(false);
+        fEstadoSalud.setEditable(false);
+        fSexo.setEditable(false);
+        fSintoma.setEditable(false);
+        
+        //Bloqueo valores
+        fValorMedicamento.setEditable(false);
+        fCantidadMedicamento.setEditable(false);
+        fTotal.setEditable(false);
+        fValorProcedimiento.setEditable(false);
+        fTiempoClinica.setEditable(false);
+        
+        jTabbedPane1.setSelectedIndex(4);
+    }//GEN-LAST:event_btnRegistrarCostosActionPerformed
+
+    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
+        jTabbedPane1.setSelectedIndex(0);
+        
+        //Valores nulos
+        //Pestaña paciente
+        txtAnimal.setText(null);
+        txtNombrePaciente.setText(null);
+        txtPeso.setText(null);
+        jComboSexo.setSelectedIndex(0);
+        jComboEstado.setSelectedIndex(0);
+        txtSintoma.setText(null);
+        
+        txtNombrePropietario.setText(null);
+        txtIdentificacion.setText(null);
+        txtTelefono.setText(null);
+        txtDireccion.setText(null);
+        
+        //Pestaña procedimiento
+        txtProcedimiento.setText(null);
+        
+        //Pestaña medicamento
+        txtMedicamento.setText(null);
+        jComboPropiedad.setSelectedIndex(0);
+        jComboViaAdministracion.setSelectedIndex(0);
+        jComboNaturaleza.setSelectedIndex(0);
+        
+        //Pestaña costo
+        txtValorMedicamento.setText(null);
+        txtCantidadMedicamento.setText(null);
+        txtValorProcedimiento.setText(null);
+        txtTiempoClinica.setText(null);
+        
+        //Pestaña Factura
+        txtNumeroFactura.setText(null);
+        txtFecha.setText(null);
+        
+        // Propietario
+        fNombrePropietario.setText(null);
+        fNumeroIdentificacion.setText(null);
+        fTelefono.setText(null);
+        fDireccion.setText(null);
+        
+        // paciente
+        fAnimal.setText(null);
+        fNombrePaciente.setText(null);
+        fPeso.setText(null);
+        fEstadoSalud.setText(null);
+        fSexo.setText(null);
+        fSintoma.setText(null);
+        
+        //Costo
+        fValorMedicamento.setText(null);
+        fCantidadMedicamento.setText(null);
+        fTotal.setText(null);
+        fValorProcedimiento.setText(null);
+        fTiempoClinica.setText(null);
+        
+        /*------------------------------------------
+        Habilitar nuavemente las pestañas
+        */
+        
+        txtAnimal.setEditable(true);
+        txtNombrePaciente.setEditable(true);
+        txtPeso.setEditable(true);
+        jComboSexo.setEnabled(true);
+        jComboEstado.setEnabled(true);
+        txtSintoma.setEditable(true);
+        
+        txtNombrePropietario.setEditable(true);
+        txtIdentificacion.setEditable(true);
+        txtTelefono.setEditable(true);
+        txtDireccion.setEditable(true);
+        
+        //Pestaña procedimiento
+        txtProcedimiento.setEditable(true);
+        
+        //Pestaña medicamento
+        txtMedicamento.setEditable(true);
+        jComboPropiedad.setEnabled(true);
+        jComboViaAdministracion.setEnabled(true);
+        jComboNaturaleza.setEnabled(true);
+        
+        //Pestaña costo
+        txtValorMedicamento.setEditable(true);
+        txtCantidadMedicamento.setEditable(true);
+        txtValorProcedimiento.setEditable(true);
+        txtTiempoClinica.setEditable(true);
+        
+        //Pestaña Factura
+        txtNumeroFactura.setEditable(true);
+        txtFecha.setEditable(true);
+        
+        // Propietario
+        fNombrePropietario.setEditable(true);
+        fNumeroIdentificacion.setEditable(true);
+        fTelefono.setEditable(true);
+        fDireccion.setEditable(true);
+        
+        // paciente
+        fAnimal.setEditable(true);
+        fNombrePaciente.setEditable(true);
+        fPeso.setEditable(true);
+        fEstadoSalud.setEditable(true);
+        fSexo.setEditable(true);
+        fSintoma.setEditable(true);
+        
+        //Costo
+        fValorMedicamento.setEditable(true);
+        fCantidadMedicamento.setEditable(true);
+        fTotal.setEditable(true);
+        fValorProcedimiento.setEditable(true);
+        fTiempoClinica.setEditable(true);
+        
+        
+        
+        
+    }//GEN-LAST:event_btnInicioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -817,13 +1365,28 @@ public class Interface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea areProcedimiento;
+    private javax.swing.JButton btnInicio;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnRegistrarCostos;
     private javax.swing.JButton btnRegistrarMedicamentos;
     private javax.swing.JButton btnRegistrarProcedimiento;
+    private javax.swing.JTextField fAnimal;
+    private javax.swing.JTextField fCantidadMedicamento;
+    private javax.swing.JTextField fDireccion;
+    private javax.swing.JTextField fEstadoSalud;
+    private javax.swing.JTextField fNombrePaciente;
+    private javax.swing.JTextField fNombrePropietario;
+    private javax.swing.JTextField fNumeroIdentificacion;
+    private javax.swing.JTextField fPeso;
+    private javax.swing.JTextField fSexo;
+    private javax.swing.JTextField fSintoma;
+    private javax.swing.JTextField fTelefono;
+    private javax.swing.JTextField fTiempoClinica;
+    private javax.swing.JTextField fTotal;
+    private javax.swing.JTextField fValorMedicamento;
+    private javax.swing.JTextField fValorProcedimiento;
     private javax.swing.JComboBox<String> jComboEstado;
-    private javax.swing.JComboBox<String> jComboNaturalez;
+    private javax.swing.JComboBox<String> jComboNaturaleza;
     private javax.swing.JComboBox<String> jComboPropiedad;
     private javax.swing.JComboBox<String> jComboSexo;
     private javax.swing.JComboBox<String> jComboViaAdministracion;
@@ -852,26 +1415,48 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel80;
+    private javax.swing.JLabel jLabel81;
+    private javax.swing.JLabel jLabel82;
+    private javax.swing.JLabel jLabel83;
+    private javax.swing.JLabel jLabel84;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
@@ -879,14 +1464,18 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
     private javax.swing.JTextField txtAnimal;
     private javax.swing.JTextField txtCantidadMedicamento;
     private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtIdentificacion;
     private javax.swing.JTextField txtMedicamento;
     private javax.swing.JTextField txtNombrePaciente;
     private javax.swing.JTextField txtNombrePropietario;
+    private javax.swing.JTextField txtNumeroFactura;
     private javax.swing.JTextField txtPeso;
+    private javax.swing.JTextField txtProcedimiento;
     private javax.swing.JTextField txtSintoma;
     private javax.swing.JTextField txtTelefono;
     private javax.swing.JTextField txtTiempoClinica;

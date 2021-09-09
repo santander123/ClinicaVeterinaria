@@ -3,8 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.clinicaveterinaria;
+package Interfaz;
 
+import com.mycompany.clinicaveterinaria.Animal;
+import com.mycompany.clinicaveterinaria.Costo;
+import com.mycompany.clinicaveterinaria.Medicamento;
+import com.mycompany.clinicaveterinaria.Procedimiento;
+import com.mycompany.clinicaveterinaria.Propietario;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -16,9 +21,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Interface extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Interface
-     */
+    Animal animal;
+    Propietario propietario;
+    Procedimiento procedimiento;
+    Medicamento medicamento;
+    Costo costo;
+    
     public Interface() {
         initComponents();
     }
@@ -375,7 +383,7 @@ public class Interface extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(80, Short.MAX_VALUE)
+                .addContainerGap(60, Short.MAX_VALUE)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80))
         );
@@ -481,7 +489,7 @@ public class Interface extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(80, Short.MAX_VALUE)
+                .addContainerGap(60, Short.MAX_VALUE)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80))
         );
@@ -638,7 +646,7 @@ public class Interface extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(80, Short.MAX_VALUE)
+                .addContainerGap(60, Short.MAX_VALUE)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80))
         );
@@ -780,7 +788,7 @@ public class Interface extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(80, Short.MAX_VALUE)
+                .addContainerGap(60, Short.MAX_VALUE)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80))
         );
@@ -1067,7 +1075,7 @@ public class Interface extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(80, Short.MAX_VALUE)
+                .addContainerGap(60, Short.MAX_VALUE)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80))
         );
@@ -1085,7 +1093,10 @@ public class Interface extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1100,10 +1111,9 @@ public class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAnimalActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        Animal animal = new Animal(txtAnimal.getText(),txtNombrePaciente.getText(),txtPeso.getText(),(String)jComboSexo.getSelectedItem(),(String)jComboEstado.getSelectedItem(),txtSintoma.getText());
-        Propietario persona = new Propietario(txtNombrePropietario.getText(),txtIdentificacion.getText(),txtTelefono.getText(),txtDireccion.getText());
-        
-        imprimirInformacion(animal,persona);
+        animal= new Animal(txtAnimal.getText(),txtNombrePaciente.getText(),txtPeso.getText(),(String)jComboSexo.getSelectedItem(),(String)jComboEstado.getSelectedItem(),txtSintoma.getText());
+        propietario = new Propietario(txtNombrePropietario.getText(),txtIdentificacion.getText(),txtTelefono.getText(),txtDireccion.getText());
+        imprimirInformacion(animal,propietario);
         
         jTabbedPane1.setSelectedIndex(1);
         
@@ -1122,14 +1132,15 @@ public class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnRegistrarProcedimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarProcedimientoActionPerformed
-        Procedimiento procedimiento = new Procedimiento(txtProcedimiento.getText());
+       procedimiento = new Procedimiento(txtProcedimiento.getText());
         jTabbedPane1.setSelectedIndex(2);
+        
         //Bloqueo
         txtProcedimiento.setEditable(false);
     }//GEN-LAST:event_btnRegistrarProcedimientoActionPerformed
 
     private void btnRegistrarMedicamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarMedicamentosActionPerformed
-        Medicamento medicamento = new Medicamento(txtMedicamento.getText(),(String)jComboPropiedad.getSelectedItem(),(String)jComboViaAdministracion.getSelectedItem(),(String)jComboNaturaleza.getSelectedItem());
+        medicamento = new Medicamento(txtMedicamento.getText(),(String)jComboPropiedad.getSelectedItem(),(String)jComboViaAdministracion.getSelectedItem(),(String)jComboNaturaleza.getSelectedItem());
         imprimirMedicamento(medicamento);
         jTabbedPane1.setSelectedIndex(3);
         //Bloqueo
@@ -1140,15 +1151,11 @@ public class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarMedicamentosActionPerformed
 
     private void btnRegistrarCostosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCostosActionPerformed
-        Costo costo=new Costo(Double.parseDouble(txtValorMedicamento.getText()),Integer.parseInt(txtCantidadMedicamento.getText()),Double.parseDouble(txtValorProcedimiento.getText()), Integer.parseInt(txtTiempoClinica.getText()));
+        costo=new Costo(Double.parseDouble(txtValorMedicamento.getText()),Integer.parseInt(txtCantidadMedicamento.getText()),Double.parseDouble(txtValorProcedimiento.getText()), Integer.parseInt(txtTiempoClinica.getText()));
         int a=0;
         a=(int)(Math.random()*100);
-        //Instacia de objetos
-        Animal animal = new Animal(txtAnimal.getText(),txtNombrePaciente.getText(),txtPeso.getText(),(String)jComboSexo.getSelectedItem(),(String)jComboEstado.getSelectedItem(),txtSintoma.getText());
-        Propietario propietario = new Propietario(txtNombrePropietario.getText(),txtIdentificacion.getText(),txtTelefono.getText(),txtDireccion.getText());
-        Medicamento medicamento = new Medicamento(txtMedicamento.getText(),(String)jComboPropiedad.getSelectedItem(),(String)jComboViaAdministracion.getSelectedItem(),(String)jComboNaturaleza.getSelectedItem());
-        Procedimiento proceso = new Procedimiento(txtProcedimiento.getText());
         
+        //Fecha y numeo de factura
         txtNumeroFactura.setText(Integer.toString(a));
         txtFecha.setText(fechaActual());
         
@@ -1167,7 +1174,7 @@ public class Interface extends javax.swing.JFrame {
         fSintoma.setText(animal.getSintomas());
         
         //Tabla
-        imprimirTablaFactura(proceso,medicamento);
+        imprimirTablaFactura(procedimiento,medicamento);
         
         //Valores
         double valorTotal=((costo.getTiempoClinica()*5000)+(costo.getValorMedicamento()*costo.getCantidadMedicamento())+costo.getValorProcedimiento());
@@ -1323,10 +1330,6 @@ public class Interface extends javax.swing.JFrame {
         fTotal.setEditable(true);
         fValorProcedimiento.setEditable(true);
         fTiempoClinica.setEditable(true);
-        
-        
-        
-        
     }//GEN-LAST:event_btnInicioActionPerformed
 
     /**

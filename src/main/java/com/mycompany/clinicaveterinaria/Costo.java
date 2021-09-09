@@ -15,6 +15,11 @@ public class Costo {
     private double valorProcedimiento;
     private int tiempoClinica;
 
+    //Constructor
+
+    public Costo() {
+    }
+    
         
     public Costo(double valorMedicamento, int cantidadMedicamento, double valorProcedimiento, int tiempoClinica) {
         this.valorMedicamento = valorMedicamento;
@@ -23,22 +28,40 @@ public class Costo {
         this.tiempoClinica = tiempoClinica;
     }
     
-    //Getters
+    //Getters and Setters
+
     public double getValorMedicamento() {
         return valorMedicamento;
+    }
+
+    public void setValorMedicamento(double valorMedicamento) {
+        this.valorMedicamento = valorMedicamento;
     }
 
     public int getCantidadMedicamento() {
         return cantidadMedicamento;
     }
 
+    public void setCantidadMedicamento(int cantidadMedicamento) {
+        this.cantidadMedicamento = cantidadMedicamento;
+    }
+
     public double getValorProcedimiento() {
         return valorProcedimiento;
+    }
+
+    public void setValorProcedimiento(double valorProcedimiento) {
+        this.valorProcedimiento = valorProcedimiento;
     }
 
     public int getTiempoClinica() {
         return tiempoClinica;
     }
+
+    public void setTiempoClinica(int tiempoClinica) {
+        this.tiempoClinica = tiempoClinica;
+    }
+    
     
     
 }

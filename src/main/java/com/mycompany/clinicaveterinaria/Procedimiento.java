@@ -11,18 +11,27 @@ package com.mycompany.clinicaveterinaria;
  */
 public class Procedimiento {
     private String procedimiento;
-
     
+    //Constructores
 
+    public Procedimiento() {
+    }
+    
     
     public Procedimiento(String procedimiento) {
         this.procedimiento = procedimiento;
     }
 
-    //Getter
+    //Getter and Setters
+
     public String getProcedimiento() {
         return procedimiento;
     }
+
+    public void setProcedimiento(String procedimiento) {
+        this.procedimiento = procedimiento;
+    }
+    
     
     
 }

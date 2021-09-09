@@ -15,8 +15,9 @@ public class Medicamento {
     private String viaDeAdministracion;
     private String naturaleza;
 
-   
-
+    //Constuctores
+    public Medicamento() {
+    }
     
     public Medicamento(String medicamento, String propiedad, String viaDeAdministracion, String naturaleza) {
         this.medicamento = medicamento;
@@ -25,22 +26,40 @@ public class Medicamento {
         this.naturaleza = naturaleza;
     }
     
-    //Getters
+    //Getters and Setters
+
     public String getMedicamento() {
         return medicamento;
+    }
+
+    public void setMedicamento(String medicamento) {
+        this.medicamento = medicamento;
     }
 
     public String getPropiedad() {
         return propiedad;
     }
 
+    public void setPropiedad(String propiedad) {
+        this.propiedad = propiedad;
+    }
+
     public String getViaDeAdministracion() {
         return viaDeAdministracion;
+    }
+
+    public void setViaDeAdministracion(String viaDeAdministracion) {
+        this.viaDeAdministracion = viaDeAdministracion;
     }
 
     public String getNaturaleza() {
         return naturaleza;
     }
+
+    public void setNaturaleza(String naturaleza) {
+        this.naturaleza = naturaleza;
+    }
+    
     
     
 }
